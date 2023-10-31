@@ -1,6 +1,7 @@
 // import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:yes_no_maybe_app/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_maybe_app/presentation/widgets/chat/my_message_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -22,7 +23,7 @@ class ChatScreen extends StatelessWidget {
             // backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHDwS00ifwoFXfqPbf7FBFGkWhM_9Ypl0EQ&usqp=CAU'),
           ),
         ),
-        title: const Text('Mi amoor'),
+        title: const Text('Mi diosa venezolana'),
         centerTitle: false,
       ),
       body: _ChatView(),
@@ -43,7 +44,9 @@ class _ChatView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 100, // Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
                 itemBuilder: (context, index) { // index, si no se controla, genera infinitos elementos
-                  return const MyMessageBubble();
+                  return ( index % 2 == 0) // La logica simple va a ser que mire el indice y si es par muestre el chat de ella y sino el mio
+                  ? const HerMessageBubble()
+                  : const MyMessageBubble();
                 }
               )
             ),
