@@ -49,7 +49,6 @@ class _ImageBubble extends StatelessWidget {
   final String? herName;
 
   const _ImageBubble({
-    super.key,
     this.herName
     });
 
@@ -65,8 +64,6 @@ class _ImageBubble extends StatelessWidget {
     // context - hace referencia del arbol de widgets padre "BuildContext context"
     // print(size);
 
-
-
     // return Placeholder(); // WIDGET que ayuda a ver las DIMENSIONES
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -76,7 +73,7 @@ class _ImageBubble extends StatelessWidget {
         height: 150, // dejamos la altura fija en este caso
         fit: BoxFit.cover, // en funcion de las dimensiones que te estoy especificando con width y height, ajustate a ellas y aplica las propiedades que haya definido previamente, como los bordes redondeados
         loadingBuilder: (context, child, loadingProgress) {  // '...Builder' indica que algo se va a construir en el momento de ejecucion de ese widget
-        
+
           if (loadingProgress == null) return child; // si el progreso ha terminado y ha cargado la imagen ('null') muestrala (child)
 
           return Container( // mientras se esta cargando la imagen, devuelve un container con otra cosa de las mismas dimensiones que la imagen que se va a cargar
