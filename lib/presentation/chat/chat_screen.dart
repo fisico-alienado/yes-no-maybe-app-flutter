@@ -24,6 +24,32 @@ class ChatScreen extends StatelessWidget {
         title: const Text('Mi amoor'),
         centerTitle: false,
       ),
+      body: _ChatView(),
+    );
+  }
+}
+
+class _ChatView extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea( // WIDGET DE FLUTTER QUE PROTEGE AUTOMATICAMENTE LAS ZONAS DE ARRIBA Y ABAJO DE MOVILES CON isla dinamica o botones
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Expanded( // Expanded() es un widget que coge todo el espacio disponible que le deje el padre y el resto de widgets
+              child: ListView.builder(
+                itemCount: 100, // Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
+                itemBuilder: (context, index) { // index, si no se controla, genera infinitos elementos
+                  return Text('Indice: $index');
+                }
+              )
+            ),
+            Text('Hola')
+          ],
+        ),
+      ),
     );
   }
 }
