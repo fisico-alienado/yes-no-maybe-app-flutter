@@ -1,6 +1,13 @@
 # Aplicación de Flutter: Yes/No/Maybe app
 
-Su desarrollo consta de dos partes: Diseño de la aplicación e implementación de la funcionalidad del chat. ¿Qué se hace/aprende en cada una de ellas?
+Podemos dividir la cración de una aplicación de flutter en tres partes:
+
+1. La construcción de la lógica de negocio.
+2. La conexión entre la lógica de negocio y los widgets/diseño.
+3. Creación del diseño de la aplicación.
+
+El punto `3` depende lo que hayamos pensado sobre `1`, es decir, la función que tenga que cumplir la app. Lo primero que se ha hecho
+es pensar en qué queremos que haga la aplicación, lo cual hace el instructor. Luego el desarrollo consta de dos partes: Diseño de la aplicación (lo primero) e implementación de la funcionalidad del chat (tras el diseño). ¿Qué se hace/aprende en cada una de ellas?
 
 ## Diseño de la aplicación
 
