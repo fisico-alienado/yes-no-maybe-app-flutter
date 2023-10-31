@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:yes_no_maybe_app/config/theme/app_theme.dart';
-import 'package:yes_no_maybe_app/presentation/chat/chat_screen.dart';
+import 'package:yes_no_maybe_app/presentation/screens/chat/chat_screen.dart';
 
 void main() => runApp(const MyApp());
 

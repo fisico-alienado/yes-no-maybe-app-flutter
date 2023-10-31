@@ -1,6 +1,7 @@
 // import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:yes_no_maybe_app/presentation/widgets/chat/my_message_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
 
@@ -42,11 +43,11 @@ class _ChatView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 100, // Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
                 itemBuilder: (context, index) { // index, si no se controla, genera infinitos elementos
-                  return Text('Indice: $index');
+                  return const MyMessageBubble();
                 }
               )
             ),
-            Text('Hola')
+            const Text('Hola')
           ],
         ),
       ),

@@ -1,0 +1,1 @@
+todo lo visual de flutter relacionado con las pantallas de la aplicacion va a ir en este directorio.
