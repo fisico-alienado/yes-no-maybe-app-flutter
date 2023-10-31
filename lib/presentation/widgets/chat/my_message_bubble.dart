@@ -4,7 +4,7 @@ class MyMessageBubble extends StatelessWidget {
   const MyMessageBubble({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // 'build' indica que algo se va a construir en el momento de ejecucion de ese widget
 
     final colors = Theme.of(context).colorScheme; // Esto significa: vete para atras en los widgets padres hasta que encuentres el Theme y aplicalo. Para esto esta el argumento "BuildContext context" en todos los Widgets
                                                   // con .colorScheme accedemos a todo lo definido en AppTheme()

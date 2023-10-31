@@ -8,6 +8,12 @@ class ChatScreen extends StatelessWidget {
 
   const ChatScreen({super.key});
 
+  final String _name = 'Mi diosa venezolana';
+
+  String get name {
+    return _name;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +29,8 @@ class ChatScreen extends StatelessWidget {
             // backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHDwS00ifwoFXfqPbf7FBFGkWhM_9Ypl0EQ&usqp=CAU'),
           ),
         ),
-        title: const Text('Mi diosa venezolana'),
+        // title: const Text('Mi diosa venezolana'),
+        title: Text(_name),
         centerTitle: false,
       ),
       body: _ChatView(),
@@ -34,7 +41,7 @@ class ChatScreen extends StatelessWidget {
 class _ChatView extends StatelessWidget {
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // 'build' indica que algo se va a construir en el momento de ejecucion de ese widget
     return SafeArea( // WIDGET DE FLUTTER QUE PROTEGE AUTOMATICAMENTE LAS ZONAS DE ARRIBA Y ABAJO DE MOVILES CON isla dinamica o botones
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -42,10 +49,11 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded( // Expanded() es un widget que coge todo el espacio disponible que le deje el padre y el resto de widgets
               child: ListView.builder(
-                itemCount: 100, // Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
-                itemBuilder: (context, index) { // index, si no se controla, genera infinitos elementos
+                itemCount: 100, // index, si no se controla, genera infinitos elementos Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
+                itemBuilder: (context, index) { // '...Builder' indica que algo se va a construir en el momento de ejecucion de ese widget
                   return ( index % 2 == 0) // La logica simple va a ser que mire el indice y si es par muestre el chat de ella y sino el mio
-                  ? const HerMessageBubble()
+                  ? HerMessageBubble(herName: const ChatScreen().name)
+                  // ? const HerMessageBubble() // prueba para si no pongo nombre ver que funciona la condicion
                   : const MyMessageBubble();
                 }
               )
