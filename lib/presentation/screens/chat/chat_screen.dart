@@ -73,6 +73,7 @@ class _ChatView extends StatelessWidget {
                          ? HerMessageBubble(herName: const ChatScreen().name, message: message,)
                          : MyMessageBubble(message: message,);
                 },
+                controller: chatProvider.chatScrollController, // el chatProvider controla el scroll del widget ListView con esto
               )
             ),
             // Text('Mundo'),
