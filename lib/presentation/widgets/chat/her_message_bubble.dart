@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_maybe_app/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
 
   final String? herName;
+  final Message message;
 
   const HerMessageBubble({
     super.key,
-    this.herName
+    this.herName, 
+    required this.message
     });
 
   @override
@@ -22,11 +25,16 @@ class HerMessageBubble extends StatelessWidget {
             color: colors.secondary, // el color definido en AppTheme(), pero el segundo
             borderRadius: BorderRadius.circular(20)
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            //----------------------- Descomentar para ver el comportamiento anterior en la fase de Diseño -------------------------------------------------
+            // child: Text(
+            //   'Hola soy Pau',
+            //   style: TextStyle( color: Colors.white),),
+            //----------------------------------------------------------------------------            
             child: Text(
-              'Hola soy Pau',
-              style: TextStyle( color: Colors.white),),
+              message.text,
+              style: const TextStyle( color: Colors.white),),
           ),
         ),
         // Para agregar una SEPARACION
@@ -46,11 +54,9 @@ class HerMessageBubble extends StatelessWidget {
 // LO PONGO COMO CLASE PRIVADA '_' porque solo se va a usar este widget en este .dart
 class _ImageBubble extends StatelessWidget {
 
-  final String? herName;
+  final String? herName;  
 
-  const _ImageBubble({
-    this.herName
-    });
+  const _ImageBubble({this.herName});
 
   String loadingImage({String? name}){
     return (name != null && name.isNotEmpty) ? '$name está enviando una imagen' : 'Enviando imagen...';

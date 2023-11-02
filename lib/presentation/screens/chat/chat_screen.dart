@@ -1,6 +1,9 @@
 // import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yes_no_maybe_app/domain/entities/message.dart';
+import 'package:yes_no_maybe_app/presentation/providers/chat_provider.dart';
 import 'package:yes_no_maybe_app/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_maybe_app/presentation/widgets/chat/my_message_bubble.dart';
 import 'package:yes_no_maybe_app/presentation/widgets/shared/message_field_box.dart';
@@ -39,10 +42,13 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-class _ChatView extends StatelessWidget {
+class _ChatView extends StatelessWidget {  
 
   @override
   Widget build(BuildContext context) { // 'build' indica que algo se va a construir en el momento de ejecucion de ese widget
+
+    final chatProvider = context.watch<ChatProvider>();  // va a estar pendiente de los cambios que sucedan en la instancia de (el objeto) ChatProvider
+
     return SafeArea( // WIDGET DE FLUTTER QUE PROTEGE AUTOMATICAMENTE LAS ZONAS DE ARRIBA Y ABAJO DE MOVILES CON isla dinamica o botones
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -50,13 +56,23 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded( // Expanded() es un widget que coge todo el espacio disponible que le deje el padre y el resto de widgets
               child: ListView.builder(
-                itemCount: 100, // index, si no se controla, genera infinitos elementos Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
-                itemBuilder: (context, index) { // '...Builder' indica que algo se va a construir en el momento de ejecucion de ese widget
-                  return ( index % 2 == 0) // La logica simple va a ser que mire el indice y si es par muestre el chat de ella y sino el mio
-                  ? HerMessageBubble(herName: const ChatScreen().name)
-                  // ? const HerMessageBubble() // prueba para si no pongo nombre ver que funciona la condicion
-                  : const MyMessageBubble();
-                }
+                //----------------------- Descomentar para ver el comportamiento anterior en la fase de Diseño -------------------------------------------------
+                // itemCount: 100, // index, si no se controla, genera infinitos elementos Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
+                // itemBuilder: (context, index) { // '...Builder' indica que algo se va a construir en el momento de ejecucion de ese widget
+                //   return ( index % 2 == 0) // La logica simple va a ser que mire el indice y si es par muestre el chat de ella y sino el mio
+                //   ? HerMessageBubble(herName: const ChatScreen().name)
+                //   // ? const HerMessageBubble() // prueba para si no pongo nombre ver que funciona la condicion
+                //   : const MyMessageBubble();
+                // }
+                //------------------------------------------------------------------------
+                itemCount: chatProvider.messageList.length,
+                itemBuilder:(context, index) {
+                  final message = chatProvider.messageList[index];
+
+                  return (message.fromWho == FromWho.hers)
+                         ? HerMessageBubble(herName: const ChatScreen().name, message: message,)
+                         : MyMessageBubble(message: message,);
+                },
               )
             ),
             // Text('Mundo'),

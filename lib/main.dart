@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       // en este caso, el gestor de estado PROVIDER tiene que estar al tanto de todos los hijos de la app y por eso lo ponemos lo mas alto posible en el organigrama de jerarquia
       // Usamos 'MultiProvider' porque puede que tengamos de un proveedor/clase de informacion y este widget permite añadir varios (por ejemplo, autentificacion, gestor de temas, chat, etc)
       providers: [
-        ChangeNotifierProvider(create: (_) => ChatProvider()) // si no se necesita el argumento, pero es obligatorio ponerlo, se pone "_"
+        ChangeNotifierProvider(create: (_) => ChatProvider()) // si no se necesita el argumento, en este caso 'context', pero es obligatorio ponerlo, se puede poner "_"
         // * AL HABER ENVUELTO TODA LA APP CON ESTE PROVEEDOR, TODOS LO WIDGETS HIJOS DE MyApp() tienen acceso al provider ChatProvider()
       ],
       child: MaterialApp(
