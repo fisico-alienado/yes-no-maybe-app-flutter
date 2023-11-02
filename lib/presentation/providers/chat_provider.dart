@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_maybe_app/config/helpers/get_yes_no_answer.dart';
 import 'package:yes_no_maybe_app/domain/entities/message.dart';
 
 class ChatProvider extends ChangeNotifier{
 
   final ScrollController chatScrollController = ScrollController();  // Widget que nos va a permitir tener el control de UN scroll controller
+  final GetYesNoAnswer getYesNoAnswer = GetYesNoAnswer();
 
   List<Message> messageList = [
     Message(text: 'Hola amor!', fromWho: FromWho.me),
@@ -16,7 +18,10 @@ class ChatProvider extends ChangeNotifier{
     // El mensaje que se va a enviar a traves del chat siempre va a ser mio
     final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
-    // El mensaje de respuesta de ella va a ser automatico (un meme)
+    // El mensaje de respuesta de ella va a ser automatico (un meme) cuando nuestro mensaje termine con '?'
+    if (text.endsWith('?')) {
+      herReply();
+    }
 
     notifyListeners();// es lo mismo que el setState({}) para los widgets. Sirve para avisar de que algo cambio (en el provider) y que hay que redibujar el widget (reenderizarlo de nuevo)
     // En este caso el listener esta en 'chat_screen.dart', linea: final chatProvider = context.watch<ChatProvider>();
@@ -37,7 +42,11 @@ class ChatProvider extends ChangeNotifier{
   void resetInitialState(){
     if (messageList.length > 2) {
       messageList.removeRange(2, messageList.length);
-      notifyListeners();
+      notifyListeners();// es lo mismo que el setState({}) para los widgets. Sirve para avisar de que algo cambio (en el provider) y que hay que redibujar el widget (reenderizarlo de nuevo)
     }
+  }
+
+  Future<void> herReply() async {
+    final herMessage = await getYesNoAnswer.getAnswer();
   }
 }

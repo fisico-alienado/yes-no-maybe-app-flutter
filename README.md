@@ -32,8 +32,9 @@ es pensar en qué queremos que haga la aplicación, lo cual hace el instructor. 
 
 - Gestores de estado
 - Mappers
-- Peticiones HTTP
-- Dio
+- Peticiones HTTP, con los paquetes de pub.dev:
+  - http (simplemente saber que existe y se puede usar)
+  - Dio ( el que se va a **usar** tiene menos dependencias que el paquete 'http' y es mas ligero)
 - Paquetes
 - Funciones que retornan valores como callbacks
 - Scroll
