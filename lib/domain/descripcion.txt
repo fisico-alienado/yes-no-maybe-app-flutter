@@ -1,0 +1,2 @@
+según los principios de arquitectura limpia, todo lo que va en esta carpeta "Domain" tiene que ser código
+puro de Dart. Aquí no utilizamos widgets de Flutter.

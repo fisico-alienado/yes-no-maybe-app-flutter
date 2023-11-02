@@ -1,0 +1,3 @@
+colocaremos nuestras ENTIDADES (entities): son unidades atómicas que permiten que la aplicación funcione.
+Estas entidades NO TIENEN QUE VER CON EL BACKEND.
+Las entidades sirven para hacer funcionar la aplicación como queremos.

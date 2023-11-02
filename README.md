@@ -30,8 +30,6 @@ es pensar en qué queremos que haga la aplicación, lo cual hace el instructor. 
 
 ## Implementación de la funcionalidad
 
-Puntualmente veremos:
-
 - Gestores de estado
 - Mappers
 - Peticiones HTTP
