@@ -32,7 +32,7 @@ class MyMessageBubble extends StatelessWidget {
           ),
         ),
         // Para agregar una SEPARACION
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
       ],
     );
   }

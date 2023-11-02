@@ -23,7 +23,9 @@ class ChatProvider extends ChangeNotifier{
     moveScrollToBottom();
   }
 
-  void moveScrollToBottom(){
+  Future<void> moveScrollToBottom() async {
+    // Para que no sea inmediato y de la sensacion de que el mensaje se procesa antes de enviarlo
+    await Future.delayed(const Duration(milliseconds: 100));
     // Cuando los mensajes lleguen al final de la pantalla, que haga scroll automatico para tener visibles los mensajes mas recientes (como Whatsapp)
     chatScrollController.animateTo( // animar cuando baja el scroll de forma automatica
       chatScrollController.position.maxScrollExtent, // que el movimiento tenga lugar hasta lo maximo que ese scroll pueda dar (si no hay mensajes suficientes para bajar, no baja)
