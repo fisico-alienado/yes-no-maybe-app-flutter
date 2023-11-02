@@ -1,0 +1,1 @@
+Gestor de estado de la parte de Presentacion de la aplicacion.
