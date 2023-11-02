@@ -20,6 +20,9 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final chatProvider = context.watch<ChatProvider>();  // va a estar pendiente (LISTENER) de los cambios que sucedan en la instancia de (el objeto) ChatProvider
+
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(
@@ -34,6 +37,14 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
         // title: const Text('Mi diosa venezolana'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh_rounded),
+            onPressed: () {
+              chatProvider.resetInitialState();
+            },
+          ),
+        ],       
         title: Text(_name),
         centerTitle: false,
       ),

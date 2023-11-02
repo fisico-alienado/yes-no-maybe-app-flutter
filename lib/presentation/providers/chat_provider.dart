@@ -33,4 +33,11 @@ class ChatProvider extends ChangeNotifier{
       curve: Curves.easeOut
     );
   }
+
+  void resetInitialState(){
+    if (messageList.length > 2) {
+      messageList.removeRange(2, messageList.length);
+      notifyListeners();
+    }
+  }
 }
