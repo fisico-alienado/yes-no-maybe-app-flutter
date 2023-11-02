@@ -11,6 +11,8 @@ class ChatProvider extends ChangeNotifier{
   ];
 
   Future<void> sendMessage(String text) async {
+    if (text.isEmpty) return; // Si el mensaje esta vacio, no enviarlo
+
     // El mensaje que se va a enviar a traves del chat siempre va a ser mio
     final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
