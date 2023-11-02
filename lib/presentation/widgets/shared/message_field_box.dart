@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatelessWidget {
-  const MessageFieldBox({super.key});
+
+  final ValueChanged<String> onValue; // Es el mensaje de texto que escribimos y que tiene que enviarse al darle a enviar, al iconito de la flecha, etc
+
+  const MessageFieldBox({
+    super.key, 
+    required this.onValue
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,7 @@ class MessageFieldBox extends StatelessWidget {
         onPressed: () {
           // CLAVE - como cogemos el valor de la caja de texto
           final textValue = textController.value.text;
-          print('button: $textValue');
+          onValue(textValue);
           textController.clear(); // Si enviamos el mensaje con el icono de la flechita que hemos puesto como decorador, se tiene que borrar el texto
         },
       )
@@ -41,7 +47,7 @@ class MessageFieldBox extends StatelessWidget {
       decoration: inputDecoration,
       controller: textController,
       onFieldSubmitted: (value) { // onFieldSubmitted, como su nombre indica, es lo que sucede cuando enviamos el mensaje presionando "enter" o con "enviar"
-        print('Submit value $value');
+        onValue(value);
         textController.clear();
         focusNode.requestFocus(); // Cuando enviamos el texto y se limpia la caja de texto, que mantenga el foco en la caja de texto con el keyboard, para que no se minimice
       },

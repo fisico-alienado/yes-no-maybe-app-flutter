@@ -47,7 +47,7 @@ class _ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) { // 'build' indica que algo se va a construir en el momento de ejecucion de ese widget
 
-    final chatProvider = context.watch<ChatProvider>();  // va a estar pendiente de los cambios que sucedan en la instancia de (el objeto) ChatProvider
+    final chatProvider = context.watch<ChatProvider>();  // va a estar pendiente (LISTENER) de los cambios que sucedan en la instancia de (el objeto) ChatProvider
 
     return SafeArea( // WIDGET DE FLUTTER QUE PROTEGE AUTOMATICAMENTE LAS ZONAS DE ARRIBA Y ABAJO DE MOVILES CON isla dinamica o botones
       child: Padding(
@@ -78,7 +78,11 @@ class _ChatView extends StatelessWidget {
             // Text('Mundo'),
 
             // Caja de texto de mensajes
-            const MessageFieldBox()
+            MessageFieldBox(
+              // onValue: (value) => chatProvider.sendMessage(value), // Forma larga. (value) {} define una función ANONIMA/LAMBDA que toma un parámetro value y luego realiza alguna acción dentro del cuerpo de la función
+              onValue: chatProvider.sendMessage, // Forma corta si los argumentos que se crean (value) son los que se tienen que enviar a la funcion
+
+            )
           ],
         ),
       ),
