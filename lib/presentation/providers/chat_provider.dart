@@ -8,8 +8,8 @@ class ChatProvider extends ChangeNotifier{
   final GetYesNoAnswer getYesNoAnswer = GetYesNoAnswer();
 
   List<Message> messageList = [
-    Message(text: 'Hola amor!', fromWho: FromWho.me),
-    Message(text: 'Ya regresaste del trabajo?', fromWho: FromWho.me)
+    // Message(text: 'Hola amor!', fromWho: FromWho.me),
+    // Message(text: 'Ya regresaste del trabajo?', fromWho: FromWho.me)
   ];
 
   Future<void> sendMessage(String text) async {
@@ -41,10 +41,12 @@ class ChatProvider extends ChangeNotifier{
   }
 
   void resetInitialState(){
-    if (messageList.length > 2) {
-      messageList.removeRange(2, messageList.length);
-      notifyListeners();// es lo mismo que el setState({}) para los widgets. Sirve para avisar de que algo cambio (en el provider) y que hay que redibujar el widget (reenderizarlo de nuevo)
-    }
+    // if (messageList.length > 2) {
+    //   messageList.removeRange(2, messageList.length);
+    //   notifyListeners();// es lo mismo que el setState({}) para los widgets. Sirve para avisar de que algo cambio (en el provider) y que hay que redibujar el widget (reenderizarlo de nuevo)
+    // }
+    messageList.clear();
+    notifyListeners();
   }
 
   Future<void> addAndEliminateWritingMessage() async {
