@@ -18,14 +18,15 @@ class ChatProvider extends ChangeNotifier{
     // El mensaje que se va a enviar a traves del chat siempre va a ser mio
     final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
-    // El mensaje de respuesta de ella va a ser automatico (un meme) cuando nuestro mensaje termine con '?'
-    if (text.endsWith('?')) {
-      herReply();
-    }
 
     notifyListeners();// es lo mismo que el setState({}) para los widgets. Sirve para avisar de que algo cambio (en el provider) y que hay que redibujar el widget (reenderizarlo de nuevo)
     // En este caso el listener esta en 'chat_screen.dart', linea: final chatProvider = context.watch<ChatProvider>();
     moveScrollToBottom();
+
+    // El mensaje de respuesta de ella va a ser automatico (un meme) cuando nuestro mensaje termine con '?'
+    if (text.endsWith('?')) {
+      herReply();
+    }
   }
 
   Future<void> moveScrollToBottom() async {
@@ -46,8 +47,22 @@ class ChatProvider extends ChangeNotifier{
     }
   }
 
+  Future<void> addAndEliminateWritingMessage() async {
+    final herMessageWriting = Message(text: 'está escribiendo un mensaje...', fromWho: FromWho.hersWaiting);
+    messageList.add(herMessageWriting);
+    notifyListeners(); // parece que aunque esto ya esta en sendMessage() hay que ponerlo
+    moveScrollToBottom();
+    // Hacemos que este 5 segundos escribiendo
+    await Future.delayed(const Duration(seconds: 5));
+    messageList.removeLast();
+  }
+
   Future<void> herReply() async {
     final herMessage = await getYesNoAnswer.getAnswer();
+
+    // Añadido por mi para hacer la gracieta de que aparezca un mensaje que esta escribiendo durante unos segundos
+    await addAndEliminateWritingMessage();
+
     messageList.add(herMessage);
     notifyListeners(); // parece que aunque esto ya esta en sendMessage() hay que ponerlo
     moveScrollToBottom();

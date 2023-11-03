@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:yes_no_maybe_app/domain/entities/message.dart';
 import 'package:yes_no_maybe_app/presentation/providers/chat_provider.dart';
 import 'package:yes_no_maybe_app/presentation/widgets/chat/her_message_bubble.dart';
+import 'package:yes_no_maybe_app/presentation/widgets/chat/her_message_buble_writing.dart';
 import 'package:yes_no_maybe_app/presentation/widgets/chat/my_message_bubble.dart';
 import 'package:yes_no_maybe_app/presentation/widgets/shared/message_field_box.dart';
 
@@ -79,10 +80,19 @@ class _ChatView extends StatelessWidget {
                 itemCount: chatProvider.messageList.length,
                 itemBuilder:(context, index) {
                   final message = chatProvider.messageList[index];
+                  if(message.fromWho == FromWho.hers){
+                    return HerMessageBubble(herName: const ChatScreen().name, message: message);
+                  }
+                  else if(message.fromWho == FromWho.me){
+                    return MyMessageBubble(message: message,);
+                  }
+                  else{
+                    return HerMessageBubbleWriting(message: message, herName: const ChatScreen().name);
+                  }
 
-                  return (message.fromWho == FromWho.hers)
-                         ? HerMessageBubble(herName: const ChatScreen().name, message: message)
-                         : MyMessageBubble(message: message,);
+                  // return (message.fromWho == FromWho.hers)
+                  //        ? HerMessageBubble(herName: const ChatScreen().name, message: message)
+                  //        : MyMessageBubble(message: message,);
                 },
                 controller: chatProvider.chatScrollController, // el chatProvider controla el scroll del widget ListView con esto
               )
@@ -93,7 +103,6 @@ class _ChatView extends StatelessWidget {
             MessageFieldBox(
               // onValue: (value) => chatProvider.sendMessage(value), // Forma larga. (value) {} define una función ANONIMA/LAMBDA que toma un parámetro value y luego realiza alguna acción dentro del cuerpo de la función
               onValue: chatProvider.sendMessage, // Forma corta si los argumentos que se crean (value) son los que se tienen que enviar a la funcion
-
             )
           ],
         ),

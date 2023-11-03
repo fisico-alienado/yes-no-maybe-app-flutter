@@ -40,12 +40,10 @@ class HerMessageBubble extends StatelessWidget {
         // Para agregar una SEPARACION
         const SizedBox(height: 5),
 
-        _ImageBubble(herName: herName, imageUrl: message.imageUrl),
+        _ImageBubble(herName: herName, imageUrl: message.imageUrl), // si pongo message.imageUrl! indico que siempre va a haber dato, aunque este marcado como opcional
 
         // Para agregar una SEPARACION
-        const SizedBox(height: 10),        
-
-        // Todo: imagen
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -85,8 +83,9 @@ class _ImageBubble extends StatelessWidget {
         fit: BoxFit.cover, // en funcion de las dimensiones que te estoy especificando con width y height, ajustate a ellas y aplica las propiedades que haya definido previamente, como los bordes redondeados
         loadingBuilder: (context, child, loadingProgress) {  // '...Builder' indica que algo se va a construir en el momento de ejecucion de ese widget
 
-          if (loadingProgress == null) return child; // si el progreso ha terminado y ha cargado la imagen ('null') muestrala (child)
-
+          if (loadingProgress == null) {
+            return child; // si el progreso ha terminado y ha cargado la imagen ('null') muestrala (child)
+          }
           return Container( // mientras se esta cargando la imagen, devuelve un container con otra cosa de las mismas dimensiones que la imagen que se va a cargar
             width: size.width * 0.7,
             height: 150,
@@ -95,6 +94,6 @@ class _ImageBubble extends StatelessWidget {
             child: Text(loadingImage(name: herName)),
           );
         },
-      )); // https://yesno.wtf/api
+      ));
   }
 }
