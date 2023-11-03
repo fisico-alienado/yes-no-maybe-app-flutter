@@ -17,14 +17,17 @@ class GetYesNoAnswer{
     //   imageUrl: response.data['image']
     // );
 
-    // Froma 2: con MAPPERS - se toman los datos de una fuente de cierta manera (de la API de la web en este caso) y se devuelve de otra manera.
+    // Forma 2: con MAPPERS - se toman los datos de una fuente de cierta manera (de la API de la web en este caso) y se devuelve de otra manera.
     final YesNoModel yesNoModel = YesNoModel.fromJsonMap(response.data);
 
-    return Message(
-      text: yesNoModel.answer, 
-      fromWho: FromWho.hers, 
-      imageUrl: yesNoModel.image
-    );    
+    // return Message(
+    //   text: yesNoModel.answer, 
+    //   fromWho: FromWho.hers, 
+    //   imageUrl: yesNoModel.image
+    // );
+
+    // Forma 3: con mapper que ya implementa el mensaje directamente con una función
+    return yesNoModel.toMessageEntity();
   }
 
 }

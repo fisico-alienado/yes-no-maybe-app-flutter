@@ -1,4 +1,7 @@
-modelos que nos sirvan para trabajar con los datos que vienen de fuera, por ejemplo, con los json que recibimos de las peticiones http.
-Por ejemplo, si algún dia cambian sus keys, etc. Tambien para evitar equivocarnos escribiendo el código, puesto que los strings
+modelos que nos sirvan para trabajar con los datos que vienen de fuera de APIs, por ejemplo, con los json que recibimos de las peticiones http.
+
+- Por ejemplo, si algún dia cambian sus keys, etc, solo tendriamos que cambiar las keys en el modelo.
+
+- Tambien para evitar equivocarnos escribiendo el código, puesto que los strings
 de las keys solo se usan en estos archivos de modelos y asi no tenemos que andar poniendo strings en los archivos donde se usen
 las llamadas http.
