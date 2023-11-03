@@ -1,6 +1,6 @@
 # Aplicación de Flutter: Yes/No/Maybe app
 
-Podemos dividir la cración de una aplicación de flutter en tres partes:
+Podemos dividir la creación de una aplicación de flutter en tres partes:
 
 1. La construcción de la lógica de negocio.
 2. La conexión entre la lógica de negocio y los widgets/diseño.
