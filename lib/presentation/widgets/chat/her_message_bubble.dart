@@ -40,7 +40,7 @@ class HerMessageBubble extends StatelessWidget {
         // Para agregar una SEPARACION
         const SizedBox(height: 5),
 
-        _ImageBubble(herName: herName),
+        _ImageBubble(herName: herName, imageUrl: message.imageUrl),
 
         // Para agregar una SEPARACION
         const SizedBox(height: 10),        
@@ -54,12 +54,16 @@ class HerMessageBubble extends StatelessWidget {
 // LO PONGO COMO CLASE PRIVADA '_' porque solo se va a usar este widget en este .dart
 class _ImageBubble extends StatelessWidget {
 
-  final String? herName;  
+  final String? herName;
+  final String? imageUrl;
 
-  const _ImageBubble({this.herName});
+  const _ImageBubble({
+    this.herName, 
+    required this.imageUrl
+  });
 
   String loadingImage({String? name}){
-    return (name != null && name.isNotEmpty) ? '$name está enviando una imagen' : 'Enviando imagen...';
+    return (name != null && name.isNotEmpty) ? '$name está enviando una imagen...' : 'Enviando imagen...';
   }
 
   @override
@@ -74,7 +78,8 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://yesno.wtf/assets/yes/15-3d723ea13af91839a671d4791fc53dcc.gif',
+        // 'https://yesno.wtf/assets/yes/15-3d723ea13af91839a671d4791fc53dcc.gif',
+        imageUrl ?? 'https://yesno.wtf/assets/yes/15-3d723ea13af91839a671d4791fc53dcc.gif',
         width: size.width * 0.7, // 70% de la anchura disponible
         height: 150, // dejamos la altura fija en este caso
         fit: BoxFit.cover, // en funcion de las dimensiones que te estoy especificando con width y height, ajustate a ellas y aplica las propiedades que haya definido previamente, como los bordes redondeados

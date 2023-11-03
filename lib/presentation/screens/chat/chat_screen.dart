@@ -81,7 +81,7 @@ class _ChatView extends StatelessWidget {
                   final message = chatProvider.messageList[index];
 
                   return (message.fromWho == FromWho.hers)
-                         ? HerMessageBubble(herName: const ChatScreen().name, message: message,)
+                         ? HerMessageBubble(herName: const ChatScreen().name, message: message)
                          : MyMessageBubble(message: message,);
                 },
                 controller: chatProvider.chatScrollController, // el chatProvider controla el scroll del widget ListView con esto

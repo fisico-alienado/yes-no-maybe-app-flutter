@@ -48,5 +48,8 @@ class ChatProvider extends ChangeNotifier{
 
   Future<void> herReply() async {
     final herMessage = await getYesNoAnswer.getAnswer();
+    messageList.add(herMessage);
+    notifyListeners(); // parece que aunque esto ya esta en sendMessage() hay que ponerlo
+    moveScrollToBottom();
   }
 }
