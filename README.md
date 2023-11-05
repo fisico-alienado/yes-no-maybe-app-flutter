@@ -32,6 +32,8 @@ es pensar en qué queremos que haga la aplicación, lo cual hace el instructor. 
 
 - Gestores de estado
 - Mappers
+- QuickType.io PARA TRABAJAR CON APIs <https://quicktype.io/> !!!!! Generate models and serializers from JSON, schema, and GraphQL for working with data quickly & safely in any programming language.
+  - Generar las librerías de los datos de la API del cliente a la que se hacen peticiones.
 - Peticiones HTTP, con los paquetes de pub.dev:
   - http (simplemente saber que existe y se puede usar)
   - Dio ( el que se va a **usar** tiene menos dependencias que el paquete 'http' y es mas ligero)
