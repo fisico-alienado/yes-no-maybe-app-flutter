@@ -13,11 +13,12 @@ class ChatScreen extends StatelessWidget {
 
   const ChatScreen({super.key});
 
-  final String _name = 'Mi diosa venezolana';
+  // final String _name = 'Mi diosa venezolana';
+  // String get name {
+  //   return _name;
+  // }
 
-  String get name {
-    return _name;
-  }
+  static const String name = 'Mi diosa venezolana';
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,8 @@ class ChatScreen extends StatelessWidget {
             },
           ),
         ],       
-        title: Text(_name),
+        // title: Text(_name),
+        title: const Text(name),
         centerTitle: false,
       ),
       body: _ChatView(),
@@ -57,7 +59,7 @@ class ChatScreen extends StatelessWidget {
 class _ChatView extends StatelessWidget {  
 
   @override
-  Widget build(BuildContext context) { // 'build' indica que algo se va a construir en el momento de ejecucion de ese widget
+  Widget build(BuildContext context) { // 'build' indica que algo se va a construir en tiempo de ejecucion de ese widget
 
     final chatProvider = context.watch<ChatProvider>();  // va a estar pendiente (LISTENER) de los cambios que sucedan en la instancia de (el objeto) ChatProvider
 
@@ -67,7 +69,7 @@ class _ChatView extends StatelessWidget {
         child: Column(
           children: [
             Expanded( // Expanded() es un widget que coge todo el espacio disponible que le deje el padre y el resto de widgets
-              child: ListView.builder(
+              child: ListView.builder(  // 'build' indica que algo se va a construir en tiempo de ejecucion de ese widget
                 //----------------------- Descomentar para ver el comportamiento anterior en la fase de Diseño -------------------------------------------------
                 // itemCount: 100, // index, si no se controla, genera infinitos elementos Con esto estamos limitando el numero maximo de item que puede mostrar/almacenar el widget ListView
                 // itemBuilder: (context, index) { // '...Builder' indica que algo se va a construir en el momento de ejecucion de ese widget
@@ -81,13 +83,13 @@ class _ChatView extends StatelessWidget {
                 itemBuilder:(context, index) {
                   final message = chatProvider.messageList[index];
                   if(message.fromWho == FromWho.hers){
-                    return HerMessageBubble(herName: const ChatScreen().name, message: message);
+                    return HerMessageBubble(herName: ChatScreen.name, message: message);
                   }
                   else if(message.fromWho == FromWho.me){
                     return MyMessageBubble(message: message,);
                   }
                   else{
-                    return HerMessageBubbleWriting(message: message, herName: const ChatScreen().name);
+                    return HerMessageBubbleWriting(message: message, herName: ChatScreen.name);
                   }
 
                   // return (message.fromWho == FromWho.hers)
